@@ -2,6 +2,7 @@
 {
     public interface IRenderable
     {
-        
+        public string Render() => ToString();
+        public string ToString();
     }
 }

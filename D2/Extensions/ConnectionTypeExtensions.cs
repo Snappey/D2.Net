@@ -1,6 +1,7 @@
 ﻿using System;
+using D2.Enums;
 
-namespace D2
+namespace D2.Extensions
 {
     public static class ConnectionTypeExtensions
     {

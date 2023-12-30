@@ -1,6 +1,7 @@
 ﻿using System;
+using D2.Enums;
 
-namespace D2
+namespace D2.Extensions
 {
     public static class ShapeTypeExtensions
     {
@@ -25,6 +26,10 @@ namespace D2
                 ShapeType.Circle => "circle",
                 ShapeType.Hexagon => "hexagon",
                 ShapeType.Cloud => "cloud",
+                ShapeType.SequenceDiagram => "sequence_diagram",
+                ShapeType.ClassDiagram => "class",
+                ShapeType.SqlTable => "sql_table",
+                ShapeType.Grid => "grid",
                 _ => throw new ArgumentException("ShapeType does not have a CatalogName", nameof(type), null)
             };
         }

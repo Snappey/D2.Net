@@ -1,4 +1,4 @@
-﻿namespace D2
+﻿namespace D2.Enums
 {
     public enum ConnectionType
     {

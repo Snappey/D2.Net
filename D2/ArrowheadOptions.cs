@@ -1,4 +1,6 @@
 ﻿using System.Text;
+using D2.Enums;
+using D2.Extensions;
 
 namespace D2
 {
@@ -17,17 +19,22 @@ namespace D2
         
         public override string ToString()
         {
-            if (!_type.HasValue)
-                return _label;
+            var sb = new StringBuilder();
+
+            var hasProperties = _type.HasValue;
+            var hasLabel = !string.IsNullOrWhiteSpace(_label);
+
+            if (hasLabel)
+                sb.Append($"{_label} ");
+
+            if (!hasProperties) return sb.ToString();
             
-            var sb = new StringBuilder(_label);
-            sb.Append(" {");
-            sb.AppendLine();
+            sb.Append("{");
             
-            sb.AppendLine($"shape: {_type},");
-            sb.AppendLine($"style.filled: {_fill}");
+            sb.Append($" shape: {_type.Value.ToCatalog()};"); // TODO: Determine if fill is default for given arrowhead type
+            sb.Append($" style.filled: {_fill.ToString().ToLower()}");
             
-            sb.AppendLine("}");
+            sb.Append(" }");
 
             return sb.ToString();
         }

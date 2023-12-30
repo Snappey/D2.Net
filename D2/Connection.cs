@@ -1,60 +1,22 @@
 ﻿using System.Text;
+using D2.Enums;
+using D2.Extensions;
+using D2.Interfaces;
+using static D2.Constants;
 
 namespace D2
 {
-    public enum ArrowheadType
-    {
-        Triangle,
-        Arrow,
-        Diamond,
-        Circle,
-        CrowsFootOne,
-        CrowsFootMany,
-        CrowsFootOneRequired,
-        CrowsFootManyRequired,
-    }
-    
-    public class ArrowheadOptions
-    {
-        private ArrowheadType? _type { get; }
-        private string _label { get; }
-        private bool _fill { get; }
-        
-        public ArrowheadOptions(ArrowheadType type, string label = "", bool fill = true)
-        {
-            _type = type;
-            _label = label;
-            _fill = fill;
-        }   
-        
-        public override string ToString()
-        {
-            if (!_type.HasValue)
-                return _label;
-            
-            var sb = new StringBuilder(_label);
-            sb.Append(" {");
-            sb.AppendLine();
-            
-            sb.AppendLine($"shape: {_type},");
-            sb.AppendLine($"style.filled: {_fill}");
-            
-            sb.AppendLine("}");
-
-            return sb.ToString();
-        }
-    }
-    
-    public class Connection
+    public class Connection : IRenderable
     {
         private Shape _from { get; }
         private Shape _to { get; }
-        private string _label { get; }
+        private string? _label { get; }
         
         private ConnectionType _type { get; }
         private ArrowheadOptions? _fromArrowhead { get; }
         private ArrowheadOptions? _toArrowhead { get; }
         
+        public Connection(Shape from, Shape to) : this(from, to, string.Empty) { }
         public Connection(Shape from,
             Shape to,
             string label,
@@ -72,21 +34,27 @@ namespace D2
         
         public override string ToString()
         {
-            var hasCustomisedArrowheads = _fromArrowhead != null || _toArrowhead != null;
-            var line = $"{_from} {_type} {_to}: {_label}"; // From A to B: Label
-            if (!hasCustomisedArrowheads)
-                return line;
+            var sb = new StringBuilder($"{_from} {_type.CatalogName()} {_to}");
             
-            var sb = new StringBuilder(line);
-            sb.Append(" {");
-            sb.AppendLine();
+            var hasProperties = _fromArrowhead != null || _toArrowhead != null;
+            var hasLabel = !string.IsNullOrEmpty(_label);
+            if (hasProperties || hasLabel)
+                sb.Append(":");
+            
+            if (hasLabel)
+                sb.Append($" {_label}");
+            
+            if (!hasProperties) return sb.ToString();
+
+            sb.Append($" {OPEN_CONTAINER}");
+
             if (_fromArrowhead != null)
-                sb.AppendLine($"source-arrowhead: {_fromArrowhead}");
+                sb.AppendLine($"{TAB}source-arrowhead: {_fromArrowhead}");
             
             if (_toArrowhead != null)
-                sb.AppendLine($"target-arrowhead: {_toArrowhead}");
+                sb.AppendLine($"{TAB}target-arrowhead: {_toArrowhead}");
             
-            sb.AppendLine("}");
+            sb.Append(CLOSE_CONTAINER);
             
             return sb.ToString();
         }
