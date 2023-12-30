@@ -6,9 +6,11 @@ public class ConnectionTests
 {
     private readonly Shape A = new Shape("A");
     private readonly Shape B = new Shape("B");
+    private readonly Shape C = new Shape("C", "Hello");
+    private readonly Shape D = new Shape("D", "World");
     
     [Test]
-    public void HelloWorld()
+    public void Basic()
     {
         var helloWorld = new Connection(A, B);
         const string expected = "A -> B";
@@ -18,7 +20,7 @@ public class ConnectionTests
     }
     
     [Test]
-    public void HelloWorldWithLabel()
+    public void WithLabel()
     {
         var helloWorldWithLabel = new Connection(A, B, "Hello World");
         const string expected = "A -> B: Hello World";
@@ -28,7 +30,7 @@ public class ConnectionTests
     }
     
     [Test]
-    public void HelloWorldWithLabelAndType()
+    public void LabelAndType()
     {
         var helloWorldWithLabelAndType = new Connection(A, B, "Hello World", ConnectionType.To);
         const string expected = "A <- B: Hello World";
@@ -38,7 +40,7 @@ public class ConnectionTests
     }
     
     [Test]
-    public void HelloWorldWithLabelAndTypeAndArrowhead()
+    public void LabelAndTypeAndArrowhead()
     {
         var helloWorldWithLabelAndTypeAndArrowhead = new Connection(A, B, "Hello World", 
             ConnectionType.To, 
@@ -56,7 +58,7 @@ public class ConnectionTests
     }
     
     [Test]
-    public void HelloWorldWithLabelAndTypeAndArrowheadAndNoFill()
+    public void LabelAndTypeAndArrowheadAndNoFill()
     {
         var helloWorldWithLabelAndTypeAndArrowheadAndFill = new Connection(A, B, "Hello World", 
             ConnectionType.To, 
@@ -74,7 +76,7 @@ public class ConnectionTests
     }
     
     [Test]
-    public void HelloWorldWithLabelAndTypeAndArrowheadAndNoLabel()
+    public void LabelAndTypeAndArrowheadAndNoLabel()
     {
         var helloWorldWithLabelAndTypeAndArrowheadAndFill = new Connection(A, B, "Hello World", 
             ConnectionType.To, 
@@ -89,5 +91,14 @@ public class ConnectionTests
         
         Assert.That(helloWorldWithLabelAndTypeAndArrowheadAndFill.ToString(), Is.EqualTo(expected));
         Assert.Pass();
+    }
+
+    [Test]
+    public void HelloWorld()
+    {
+        var helloWorld = new Connection(C, D, "Almost There");
+        const string expected = "C -> D: Almost There";
+        
+        Assert.That(helloWorld.ToString(), Is.EqualTo(expected));
     }
 }

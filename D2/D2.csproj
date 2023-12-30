@@ -3,6 +3,14 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <Nullable>enable</Nullable>
+    <PackageId>D2.Net</PackageId>
+    <Version>0.1.0</Version>
+    <Title>D2.Net</Title>
+    <Authors>Jon Nuttall</Authors>
+    <Description>Fluent API for creating D2 Language templates</Description>
+    <PackageProjectUrl>https://github.com/Snappey/D2.Net</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Snappey/D2.Net</RepositoryUrl>
+    <PackageTags>D2</PackageTags>
   </PropertyGroup>
 
 </Project>

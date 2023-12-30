@@ -17,11 +17,13 @@ namespace D2
         private Dictionary<string, string> _attributes { get; }
         private IEnumerable<Shape> _children { get; }
         
+        public string Key => _key;
+        public string Label => _label;
+        
         public Shape(string label) : this(label, string.Empty, null) { }
         public Shape(string label, ShapeType? type) : this(label, string.Empty, type) { }
-        public Shape(string label, string key) : this(label, key, null) { }
         
-        public Shape(string key, string label, ShapeType? type, IEnumerable<Shape>? children = null)
+        public Shape(string key, string label, ShapeType? type = null, IEnumerable<Shape>? children = null)
         {
             if (string.IsNullOrEmpty(key))
                 throw new ArgumentException("Key cannot be null or empty");
@@ -39,7 +41,7 @@ namespace D2
             _attributes[key] = value;
             return this;
         }
-
+        
         public override string ToString()
         {
             var sb = new StringBuilder(_key);

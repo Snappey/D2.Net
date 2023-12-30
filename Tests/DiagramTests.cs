@@ -5,6 +5,33 @@ namespace Tests;
 public class DiagramTests
 {
     [Test]
+    public void ReadMeExample()
+    {
+        
+        var A = new Shape("A", "Starting Point");
+        var B = new Shape("B", "Ending Point");
+        var C = new Shape("C", "Middle Point", ShapeType.Hexagon);
+
+        var basicTemplate = Diagram.Create()
+            .Add(A)
+            .Add(B)
+            .Add(C)
+            .Add(new Connection(A, C))
+            .Add(new Connection(C, B, "Hello World!"));
+        
+        const string exepected = @"A: Starting Point
+B: Ending Point
+C: Middle Point {
+    shape: hexagon
+}
+A -> C
+C -> B: Hello World!";
+
+        Assert.That(basicTemplate.ToString(), Is.EqualTo(exepected));
+        Assert.Pass();
+    }
+    
+    [Test]
     public void HelloWorld()
     {
         var helloWorld = Diagram.Create()

@@ -34,7 +34,7 @@ namespace D2
         
         public override string ToString()
         {
-            var sb = new StringBuilder($"{_from} {_type.CatalogName()} {_to}");
+            var sb = new StringBuilder($"{_from.Key} {_type.CatalogName()} {_to.Key}");
             
             var hasProperties = _fromArrowhead != null || _toArrowhead != null;
             var hasLabel = !string.IsNullOrEmpty(_label);
