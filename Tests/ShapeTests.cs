@@ -147,31 +147,32 @@ public class ShapeTests
             .WithAttribute("near", "top-center")
             .WithAttribute("direction", "right")
             .WithAttribute("link", "https://www.google.co.uk");
-        
+
         const string expected = @"N: Shape With Attributes {
     shape: rectangle
     near: top-center
     direction: right
     link: https://www.google.co.uk
 }";
-    
+
         Assert.That(shapeWithAttributes.ToString(), Is.EqualTo(expected));
         Assert.Pass();
     }
-    
+
     [Test]
     public void ShapeWithAttributesAndChildren()
     {
-        var shapeWithAttributesAndChildren = new Shape("O", "Shape With Attributes And Children", ShapeType.Rectangle, new[]
-            {
-                new Shape("P", "Child 1"),
-                new Shape("Q", "Child 2"),
-                new Shape("R", "Child 3")
-            })
+        var shapeWithAttributesAndChildren = new Shape("O", "Shape With Attributes And Children", ShapeType.Rectangle,
+                new[]
+                {
+                    new Shape("P", "Child 1"),
+                    new Shape("Q", "Child 2"),
+                    new Shape("R", "Child 3")
+                })
             .WithAttribute("near", "top-center")
             .WithAttribute("direction", "right")
             .WithAttribute("link", "https://www.google.co.uk");
-        
+
         const string expected = @"O: Shape With Attributes And Children {
     shape: rectangle
     near: top-center
@@ -181,8 +182,108 @@ public class ShapeTests
     Q: Child 2
     R: Child 3
 }";
-    
+
         Assert.That(shapeWithAttributesAndChildren.ToString(), Is.EqualTo(expected));
+        Assert.Pass();
+    }
+
+    [Test]
+    public void MarkdownShape()
+    {
+        var markdownShape = new Markdown("S",
+            $"# I can do headers{Environment.NewLine}  - lists{Environment.NewLine}  - lists");
+        const string expected = @"S: |md
+# I can do headers
+  - lists
+  - lists|";
+
+        Assert.That(markdownShape.ToString(), Is.EqualTo(expected));
+        Assert.Pass();
+    }
+
+    [Test]
+    public void MarkdownShapeWithChildrenAndShape()
+    {
+        var markdownShapeWithChildren = new Markdown("T",
+            $"# I can do headers{Environment.NewLine}  - lists{Environment.NewLine}  - lists", ShapeType.Hexagon, new[]
+            {
+                new Shape("U", "Child 1"),
+                new Shape("V", "Child 2"),
+                new Shape("W", "Child 3")
+            });
+        const string expected = @"T: |md
+# I can do headers
+  - lists
+  - lists| {
+    shape: hexagon
+    U: Child 1
+    V: Child 2
+    W: Child 3
+}";
+
+        Assert.That(markdownShapeWithChildren.ToString(), Is.EqualTo(expected));
+        Assert.Pass();
+    }
+    
+    [Test]
+    public void LateXShape()
+    {
+        var lateXShape = new LateX("X",
+            @"\\lim_{h \\rightarrow 0 } \\frac{f(x+h)-f(x)}{h}");
+        const string expected = @"X: |latex
+\\lim_{h \\rightarrow 0 } \\frac{f(x+h)-f(x)}{h}|";
+        
+        Assert.That(lateXShape.ToString(), Is.EqualTo(expected));
+        Assert.Pass();
+    }
+    
+    [Test]
+    public void LateXShapeWithChildrenAndShape()
+    {
+        var lateXShapeWithChildren = new LateX("Y",
+            @"\\lim_{h \\rightarrow 0 } \\frac{f(x+h)-f(x)}{h}", ShapeType.Hexagon, new[]
+            {
+                new Shape("Z", "Child 1"),
+                new Shape("AA", "Child 2"),
+                new Shape("AB", "Child 3")
+            });
+        const string expected = @"Y: |latex
+\\lim_{h \\rightarrow 0 } \\frac{f(x+h)-f(x)}{h}| {
+    shape: hexagon
+    Z: Child 1
+    AA: Child 2
+    AB: Child 3
+}";
+        
+        Assert.That(lateXShapeWithChildren.ToString(), Is.EqualTo(expected));
+        Assert.Pass();
+    }
+    
+    [Test]
+    public void ShapeWithIcon()
+    {
+        var shapeWithIcon = new Shape("AC", "Shape With Icon", ShapeType.Rectangle)
+            .WithIcon("https://icons.terrastruct.com/aws%2FCompute%2F_Instance%2FAmazon-EC2_C4-Instance_light-bg.svg");
+        const string expected = @"AC: Shape With Icon {
+    shape: rectangle
+    icon: https://icons.terrastruct.com/aws%2FCompute%2F_Instance%2FAmazon-EC2_C4-Instance_light-bg.svg
+}";
+
+        Assert.That(shapeWithIcon.ToString(), Is.EqualTo(expected));
+        Assert.Pass();
+    }
+    
+    [Test]
+    public void ShapeAsIcon()
+    {
+        var shapeAsIcon = new Shape("AD", "Shape As Icon", ShapeType.Rectangle) // Rectangle is ignored and overwritten
+            .AsIcon("https://icons.terrastruct.com/aws%2FCompute%2F_Instance%2FAmazon-EC2_C4-Instance_light-bg.svg");
+        const string expected = @"AD: Shape As Icon {
+    shape: image
+    icon: https://icons.terrastruct.com/aws%2FCompute%2F_Instance%2FAmazon-EC2_C4-Instance_light-bg.svg
+}";
+
+        Assert.That(shapeAsIcon.ToString(), Is.EqualTo(expected));
         Assert.Pass();
     }
 }

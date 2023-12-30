@@ -1,10 +1,7 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:String x:Key="/Default/Environment/Highlighting/HighlightingSourceSnapshotLocation/@EntryValue">C:\Users\jonat\AppData\Local\JetBrains\Rider2023.3\resharper-host\temp\Rider\vAny\CoverageData\_D2.Net.962152917\Snapshot\snapshot.utdcvr</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=1164f459_002D2552_002D4358_002Da6c3_002Dececed244815/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Shapes" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::68C16CE9-F51E-4857-8547-7F20CDD7AF93::net6.0::Tests.ShapeTests&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::68C16CE9-F51E-4857-8547-7F20CDD7AF93::net6.0::Tests.ConnectionTests&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::68C16CE9-F51E-4857-8547-7F20CDD7AF93::net6.0::Tests.DiagramTests&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=ab643cac_002D18ca_002D411c_002D889a_002Dd14b5a21af54/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from Solution" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;Solution /&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
+	
 	</wpf:ResourceDictionary>

@@ -30,6 +30,7 @@ namespace D2.Extensions
                 ShapeType.ClassDiagram => "class",
                 ShapeType.SqlTable => "sql_table",
                 ShapeType.Grid => "grid",
+                ShapeType.Image => "image",
                 _ => throw new ArgumentException("ShapeType does not have a CatalogName", nameof(type), null)
             };
         }

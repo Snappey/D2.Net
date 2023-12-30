@@ -13,7 +13,7 @@ namespace D2
     {
         private string _key { get; }
         private string _label { get; }
-        private ShapeType? _type { get; }
+        private ShapeType? _type { get; set; }
         private Dictionary<string, string> _attributes { get; }
         private IEnumerable<Shape> _children { get; }
         
@@ -39,6 +39,19 @@ namespace D2
         public Shape WithAttribute(string key, string value)
         {
             _attributes[key] = value;
+            return this;
+        }
+        
+        public Shape WithIcon(string icon)
+        {
+            _attributes["icon"] = icon;
+            return this;
+        }
+
+        public Shape AsIcon(string icon)
+        {
+            _attributes["icon"] = icon;
+            _type = ShapeType.Image;
             return this;
         }
         

@@ -20,14 +20,11 @@ namespace D2
         public override string ToString()
         {
             var sb = new StringBuilder();
-
-            var hasProperties = _type.HasValue;
-            var hasLabel = !string.IsNullOrWhiteSpace(_label);
-
-            if (hasLabel)
+            
+            if (!string.IsNullOrWhiteSpace(_label))
                 sb.Append($"{_label} ");
 
-            if (!hasProperties) return sb.ToString();
+            if (!_type.HasValue) return sb.ToString();
             
             sb.Append("{");
             

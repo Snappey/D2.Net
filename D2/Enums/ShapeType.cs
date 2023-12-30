@@ -22,6 +22,7 @@
         SqlTable,
         SequenceDiagram,
         ClassDiagram,
-        Grid
+        Grid,
+        Image
     }
 }
