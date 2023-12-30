@@ -1,6 +1,5 @@
 
 
-[D2 Language templates](https://github.com/terrastruct/d2)
 
 <div align="center">
 <h1>D2.Net</h1>
@@ -11,6 +10,7 @@
 A .NET Library for programatically creating D2 Templates.
 </h3>
 
+[D2 Language](https://github.com/terrastruct/d2) created by Terrastruct
 
 ![Latest Version](https://img.shields.io/github/v/release/Snappey/D2.Net)
 [![NuGet](https://img.shields.io/nuget/v/D2.Net.svg)](https://www.nuget.org/packages/D2.Net/)
