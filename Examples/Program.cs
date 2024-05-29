@@ -1,6 +1,5 @@
 ﻿using D2;
 using D2.Enums;
-using D2.Writers;
 
 var A = new Shape("A", "Starting Point");
 var B = new Shape("B", "Ending Point");
