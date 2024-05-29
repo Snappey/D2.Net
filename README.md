@@ -29,14 +29,14 @@ Currently this library is in early development and not all D2 features are suppo
 - [x] Shapes
   - [x] Labels
   - [x] Containers / Children
-  - [ ] Styling
+  - [x] Styling
 - [x] Connections
   - [x] Labels
   - [x] Arrow Styling/Directions
   - [ ] Styling
 - [ ] Tooltips / Links
-- [ ] Icons
-- [ ] Standalone Text / Markdown / LateX
+- [x] Icons
+- [x] Standalone Text / Markdown / LateX
 - [ ] Sequence Diagrams
 - [ ] UML/Class Diagrams
 - [ ] SQL Table Diagrams
@@ -51,38 +51,67 @@ dotnet add package D2.Net
 
 ## Usage
 
-Here is an example of creating a basic template using D2.Net.
+Here is an example of creating a fairly complex template using D2.Net with most of the implemented features.
+
+You can check Examples to see this and a more basic setup.
 
 ```csharp
 using D2;
 
-var A = new Shape("A", "Starting Point");
-var B = new Shape("B", "Ending Point");
-var C = new Shape("C", "Middle Point", ShapeType.Hexagon);
+var styledTemplate = Diagram.Create()
+    .CreateShape("D", type: ShapeType.Circle)
+    .CreateShape("E", "Styled Shape", ShapeType.Hexagon)
+    .CreateShape("F", "Styled Diamond Shape", ShapeType.Diamond)
+    .CreateDirectionalConnection("D", "E", "Styled Connection", new ArrowheadOptions(ArrowheadType.CrowsFootManyRequired, "Filled Triangle"))
+    .CreateBidirectionalConnection("E", "F", "Bidirectional Connection",
+        new ArrowheadOptions(ArrowheadType.CrowsFootManyRequired),
+        new ArrowheadOptions(ArrowheadType.CrowsFootManyRequired))
+    .CreateConnection("F", "D")
+    .CreateMarkdownShape("G", @"  # I can do headers
 
-var basicTemplate = Diagram.Create()
-  .Add(A)
-  .Add(B)
-  .Add(C)
-  .Add(new Connection(A, C))
-  .Add(new Connection(C, B, "Hello World!"));
+  - lists
+  - lists
 
-// Each component overrides ToString() to return the D2 code for that instance
-Console.WriteLine(basicTemplate);
-// or you can use the Render() method
-Console.WriteLine(basicTemplate.Render());
+  And other normal markdown stuff")
+    .CreateLatexShape("H", @"\\lim_{h \\rightarrow 0 } \\frac{f(x+h)-f(x)}{h}")
+    .CreateBidirectionalConnection("G", "H");
 
+Console.WriteLine(styledTemplate);
 ```
 This will output the following D2 code:
 
 ```d2
-A: Starting Point
-B: Ending Point
-C: Middle Point {
+D: {
+  shape: circle
+}
+E: Styled Shape {
   shape: hexagon
 }
-A -> C
-C -> B: Hello World!
+F: Styled Diamond Shape {
+  shape: diamond
+}
+D -> E: Styled Connection {
+  target-arrowhead: Filled Triangle { shape: cf-many-required; style.filled: true }
+}
+E <-> F: Bidirectional Connection {
+  source-arrowhead: { shape: cf-many-required; style.filled: true }
+  target-arrowhead: { shape: cf-many-required; style.filled: true }
+}
+F -> D
+G: |md
+  # I can do headers
+
+  - lists
+  - lists
+
+  And other normal markdown stuff|
+H: |latex
+\\lim_{h \\rightarrow 0 } \\frac{f(x+h)-f(x)}{h}|
+G <-> H: Bidirectional Connection {
+  source-arrowhead: { shape: cf-many-required; style.filled: true }
+  target-arrowhead: { shape: cf-many-required; style.filled: true }
+}
+
 ```
 That is rendered to the following diagram, using the [D2 Playground](https://play.d2lang.com/?script=crRSCC5JLCrJzEtXCMjPzCvhcrJScM1LQfCdrRR8M1NSclIhfIVqLgUFBYXijMSCVCuFjNSKxPT8PK5aLkcFXTsFZy5nEOVkpeCRmpOTrxCeX5STosgFCAAA__8%3D&)!
 ![Basic Template](./assets/d2-readme.png)
