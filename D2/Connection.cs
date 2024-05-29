@@ -12,11 +12,11 @@ namespace D2
         private string _from { get; }
         private string _to { get; }
         private string? _label { get; }
-        
+
         private ConnectionType _type { get; }
         private ArrowheadOptions? _fromArrowhead { get; }
         private ArrowheadOptions? _toArrowhead { get; }
-        
+
         public Connection(Guid from, Guid to) : this(from.ToString(), to.ToString(), string.Empty, null) { }
         public Connection(Shape from, Shape to) : this(from.Key, to.Key, string.Empty, null) { }
         public Connection(string from, string to) : this(from, to, string.Empty, null) { }
@@ -43,31 +43,31 @@ namespace D2
             _fromArrowhead = fromArrowhead;
             _toArrowhead = toArrowhead;
         }
-        
+
         public override string ToString()
         {
             var sb = new StringBuilder($"{_from} {_type.CatalogName()} {_to}");
-            
+
             var hasProperties = _fromArrowhead != null || _toArrowhead != null;
             var hasLabel = !string.IsNullOrEmpty(_label);
             if (hasProperties || hasLabel)
                 sb.Append(":");
-            
+
             if (hasLabel)
                 sb.Append($" {_label}");
-            
+
             if (!hasProperties) return sb.ToString();
 
-            sb.Append($" {OPEN_CONTAINER}");
+            sb.Append($" {OPEN_CONTAINER}{Environment.NewLine}");
 
             if (_fromArrowhead != null)
                 sb.AppendLine($"{TAB}source-arrowhead: {_fromArrowhead}");
-            
+
             if (_toArrowhead != null)
                 sb.AppendLine($"{TAB}target-arrowhead: {_toArrowhead}");
-            
+
             sb.Append(CLOSE_CONTAINER);
-            
+
             return sb.ToString();
         }
     }
