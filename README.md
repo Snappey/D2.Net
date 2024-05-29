@@ -113,5 +113,5 @@ G <-> H: Bidirectional Connection {
 }
 
 ```
-That is rendered to the following diagram, using the [D2 Playground](https://play.d2lang.com/?script=crRSCC5JLCrJzEtXCMjPzCvhcrJScM1LQfCdrRR8M1NSclIhfIVqLgUFBYXijMSCVCuFjNSKxPT8PK5aLkcFXTsFZy5nEOVkpeCRmpOTrxCeX5STosgFCAAA__8%3D&)!
+That is rendered to the following diagram, using the [D2 Playground]([https://play.d2lang.com/?script=crRSCC5JLCrJzEtXCMjPzCvhcrJScM1LQfCdrRR8M1NSclIhfIVqLgUFBYXijMSCVCuFjNSKxPT8PK5aLkcFXTsFZy5nEOVkpeCRmpOTrxCeX5STosgFCAAA__8%3D&](https://play.d2lang.com/?script=1JBBi9swFITv71cM9JJQXHpWS6Ct66Tn9GhYhPVsiZWl3WeZONj-74sdyIYllxz3JphPM_MmVxgJ6Kx-YYXKSeWZZvqrcExnzwbHRbllLA-6iYFmKq5Q7nQbwx3YXASaKUe2w7vtnxgCV8nFsOJJS8Mp0yLxZFkbhcL5hfsvTofGM8ZrxzprdThnwq-9EzY_0C2W3-r1g0KSnjEvN-BntkOh8NsZJ5cw7T8md7GXim-TH0261_7xtsWyT057hak1BHzBP1Q6wEQsliwdEZDBuy51Ny8CfgWDmCwLQpRWe7Rank08BXSpr-uJDgqT14kHKkvv2qfRoizFNTatlfEdM8qyFl2N9Wb4ardZvRm282jnifbriodPsuJbAAAA__8%3D&sketch=0&))!
 ![Basic Template](./assets/d2-readme.png)
