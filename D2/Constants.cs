@@ -6,6 +6,6 @@ namespace D2
     {
         internal static readonly string OPEN_CONTAINER = "{";
         internal static readonly string CLOSE_CONTAINER = "}";
-        internal static readonly string TAB = "  "; // TODO: Make this configurable
+        internal static readonly string TAB = "    "; // TODO: Make this configurable
     }
 }
